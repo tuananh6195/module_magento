@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TuanAnh_Tutorial::post" title="Post" module="TuanAnh_Tutorial" sortOrder="51" action="tuananh_tutorial/post" resource="TuanAnh_Tutorial::post"/>
+    </menu>
+</config>

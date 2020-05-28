@@ -1,0 +1,16 @@
+{
+  "name": "tuananh/magento2-module-tutorial",
+  "description": "TuanAnh Magento2 module Tutorial",
+  "require": {
+    "php": "~7.0.0"
+  },
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "TuanAnh\\Tutorial\\": ""
+    }
+  }
+}

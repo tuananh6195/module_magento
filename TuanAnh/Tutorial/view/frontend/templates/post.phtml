@@ -1,0 +1,48 @@
+<style>
+    table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%;  margin-top: 30px;}
+    td, th {  border: 1px solid #dddddd;  text-align: left;  padding: 8px;  }
+
+</style>
+<?php if ($this->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom custom-pager"><?php echo $this->getPagerHtml(); ?></div>
+<?php endif ?>
+<?php
+//	$_griprecords = $this->getCountPost();
+    $_griprecords = $this->getRewardHistory();
+?>
+<?php if ($_griprecords && count($_griprecords)): ?>
+    <div class="table-wrapper order-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?php echo __('Grip Record')?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?php echo __('ID #') ?></th>
+                    <th scope="col" class="col title"><?php echo __('Title') ?></th>
+                    <th scope="col" class="col date"><?php echo __('Created At') ?></th>
+                    <th scope="col" class="col description"><?php echo __('Description') ?></th>
+                    <th scope="col" class="col status"><?php echo __('Status') ?></th>
+                    <th scope="col" class="col image"><?php echo __('Image') ?></th>
+                </tr>
+            </thead>
+            <?php foreach ($_griprecords as $_griprecord): ?>
+                <?php if($_griprecord->getStatus() == 1 && $_griprecord->getStoreId() == $this->getStore()): ?>
+                     <tbody>
+                        <td class="col id"><?php echo $_griprecord->getId() ?></td>
+                        <td class="col shipping"><?php echo $_griprecord->getTitle() ?></td>
+                        <td class="col shipping"><?php echo $_griprecord->getCreatedAt() ?></td>
+                        <td class="col shipping"><?php echo substr($_griprecord->getDescription(),0,258); ?></td>
+                        <td class="col shipping"><?php echo ($_griprecord->getStatus() == 1) ? 'Enabled' : 'Disabled' ?></td>
+                        <td class="col shipping">
+                            <img src="<?php echo $this->getMediaUrl().$_griprecord->getImage() ?>" class="rounded mx-auto d-block" width="200px" height="200px" alt="<?php $_griprecord->getImage() ?>"></td>
+                    </tbody>
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+        </table>
+    </div>
+    <?php if ($this->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom custom-pager"><?php echo $this->getPagerHtml(); ?></div>
+    <?php endif; ?>
+<?php else: ?>
+    <div class="message info empty"><span><?php echo __('Records not available'); ?></span></div>
+<?php endif ?>
